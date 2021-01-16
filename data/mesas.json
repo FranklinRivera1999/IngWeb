@@ -1,0 +1,63 @@
+[
+    {
+        "numMesa":"M0001",
+        "especificacion":"Mesa para 3",
+        "canComensales":3,
+        "mozoId": "60022b8b72175191c24aa0b1"
+    },
+    {
+        "numMesa":"M0002",
+        "especificacion":"Al costado del Baño",
+        "canComensales":5,
+        "mozoId": "60022b8b72175191c24aa0b1"
+    },
+    {
+        "numMesa":"M0003",
+        "especificacion":"Al costado de la puerta",
+        "canComensales":8,
+        "mozoId": "60022b8b72175191c24aa0b1"
+    },
+    {
+        "numMesa":"M0004",
+        "especificacion":"Al costado de la cocina",
+        "canComensales":4,
+        "mozoId": "60022b8b72175191c24aa0b1"
+    },
+    {
+        "numMesa":"M0005",
+        "especificacion":"Mesa donde estudia Millones",
+        "canComensales":3,
+        "mozoId": "60022b8b72175191c24aa0b1"
+    },
+    {
+        "numMesa":"M0006",
+        "especificacion":"Mesa Familiar",
+        "canComensales":8,
+        "mozoId": "60022bb972175191c24aa0b2"
+    },
+    {
+        "numMesa":"M0007",
+        "especificacion":"Mesa al costado de la escalera",
+        "canComensales":3,
+        "mozoId": "60022bb972175191c24aa0b2"
+    },
+    {
+        "numMesa":"M0008",
+        "especificacion":"Mesa para 6",
+        "canComensales":6,
+        "mozoId": "60022bb972175191c24aa0b2"
+    },
+    {
+        "numMesa":"M0009",
+        "especificacion":"Mesa para 4",
+        "canComensales":4,
+        "mozoId": "60022bb972175191c24aa0b2"
+    },
+    {
+        "numMesa":"M0010",
+        "especificacion":"Mesa para 3",
+        "canComensales":3,
+        "mozoId": "60022bb972175191c24aa0b2"
+    }
+    
+]

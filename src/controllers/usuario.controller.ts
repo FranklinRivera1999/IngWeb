@@ -47,7 +47,7 @@ export class UsuarioController {
     this.usuarioService=new UsuarioService(usuarioRepository)
   }
 
-  @post('/login', {
+  @post('/api/login', {
     responses: {
       '200': {
         description: 'Login for users'
@@ -60,12 +60,21 @@ export class UsuarioController {
     let user = await  this.usuarioService.verifyCredentials(credentials)
     const userProfile = await this.usuarioService.convertToUserProfile(user)
     const token = await this.jwtService.generateToken(userProfile)
+
+    let userRelations = await this.usuarioRepository.findById(user.id,{
+      include:['roles','mesas']
+    })
+
+    userRelations.codigo = ''
     return {
-      user,token
+      user: userRelations
+      ,token
     }
   }
   
-  @post('/usuarios', {
+
+  @authenticate("jwt")
+  @post('/api/usuarios', {
     responses: {
       '200': {
         description: 'Usuario model instance',
@@ -89,21 +98,8 @@ export class UsuarioController {
     return this.usuarioRepository.create(usuario);
   }
 
-  @get('/usuarios/count', {
-    responses: {
-      '200': {
-        description: 'Usuario model count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async count(
-    @param.where(Usuario) where?: Where<Usuario>,
-  ): Promise<Count> {
-    return this.usuarioRepository.count(where);
-  }
 
-  @get('/usuarios', {
+  @get('/api/usuarios', {
     responses: {
       '200': {
         description: 'Array of Usuario model instances',
@@ -124,7 +120,8 @@ export class UsuarioController {
     return this.usuarioRepository.find(filter);
   }
 
-  @patch('/usuarios', {
+  @authenticate("jwt")
+  @patch('/api/usuarios', {
     responses: {
       '200': {
         description: 'Usuario PATCH success count',
@@ -147,7 +144,7 @@ export class UsuarioController {
   }
 
   @authenticate("jwt")
-  @get('/usuarios/{id}', {
+  @get('/api/usuarios/{id}', {
     responses: {
       '200': {
         description: 'Usuario model instance',
@@ -165,7 +162,10 @@ export class UsuarioController {
     return this.usuarioRepository.findById(id, {include:["roles"]});
   }
 
-  @patch('/usuarios/{id}', {
+  
+
+  @authenticate("jwt")
+  @patch('/api/usuarios/{id}', {
     responses: {
       '204': {
         description: 'Usuario PATCH success',
@@ -186,7 +186,9 @@ export class UsuarioController {
     await this.usuarioRepository.updateById(id, usuario);
   }
 
-  @put('/usuarios/{id}', {
+
+  @authenticate("jwt")
+  @put('/api/usuarios/{id}', {
     responses: {
       '204': {
         description: 'Usuario PUT success',
@@ -200,7 +202,9 @@ export class UsuarioController {
     await this.usuarioRepository.replaceById(id, usuario);
   }
 
-  @del('/usuarios/{id}', {
+   
+  @authenticate("jwt")
+  @del('/api/usuarios/{id}', {
     responses: {
       '204': {
         description: 'Usuario DELETE success',

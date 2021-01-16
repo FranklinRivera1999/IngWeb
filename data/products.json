@@ -1,0 +1,37 @@
+[
+    {
+        "nombre":"1/8 Pollo a la Brasa",
+        "precio":8,
+        "categoria":"Comidas"
+    },
+    {
+        "nombre":"1/4 Pollo a la Brasa",
+        "precio":13,
+        "categoria":"Comidas"
+    },
+    {
+        "nombre":"1/2 Pollo a la Brasa",
+        "precio":24,
+        "categoria":"Comidas"
+    },
+    {
+        "nombre":"Gaseosa Inka Cola 1 Litro",
+        "precio":6,
+        "categoria":"Bebidas"
+    },
+    {
+        "nombre":"1 Pollo a la Brasa",
+        "precio":45,
+        "categoria":"Comidas"
+    },
+    {
+        "nombre":"Ensalada de Palta",
+        "precio":6,
+        "categoria":"Ensaladas"
+    },
+    {
+        "nombre":"Ensalada de Fideos",
+        "precio":6,
+        "categoria":"Ensaladas"
+    }
+]
