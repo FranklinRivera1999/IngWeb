@@ -29,7 +29,8 @@
     "openapi-spec": "node ./dist/openapi-spec",
     "rebuild": "npm run clean && npm run build",
     "prestart": "npm run rebuild",
-    "start": "node -r source-map-support/register .",
+    "dev":"node -r source-map-support/register .",
+    "start": "npm run build && node dist/index.js",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache"
   },
   "repository": {
