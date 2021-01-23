@@ -62,7 +62,7 @@ export class UsuarioController {
     const token = await this.jwtService.generateToken(userProfile)
 
     let userRelations = await this.usuarioRepository.findById(user.id,{
-      include:['roles','mesas']
+      include:['roles']
     })
 
     userRelations.codigo = ''
@@ -115,9 +115,9 @@ export class UsuarioController {
     },
   })
   async find(
-    @param.filter(Usuario) filter?: Filter<Usuario>,
+    
   ): Promise<Usuario[]> {
-    return this.usuarioRepository.find(filter);
+    return this.usuarioRepository.find();
   }
 
 

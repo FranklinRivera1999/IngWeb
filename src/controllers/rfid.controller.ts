@@ -25,7 +25,7 @@ export class RfidController {
     public rfidRepository : RfidRepository,
   ) {}
 
-  @post('/rfids', {
+  @post('/api/rfids', {
     responses: {
       '200': {
         description: 'Rfid model instance',
@@ -50,7 +50,7 @@ export class RfidController {
   }
 
 
-  @get('/rfids', {
+  @get('/api/rfids', {
     responses: {
       '200': {
         description: 'Array of Rfid model instances',
@@ -72,7 +72,7 @@ export class RfidController {
   }
 
 
-  @get('/rfids/{id}', {
+  @get('/api/rfids/{id}', {
     responses: {
       '200': {
         description: 'Rfid model instance',
@@ -91,7 +91,7 @@ export class RfidController {
     return this.rfidRepository.findById(id, filter);
   }
 
-  @patch('/rfids/{id}', {
+  @patch('/api/rfids/{id}', {
     responses: {
       '204': {
         description: 'Rfid PATCH success',
@@ -112,7 +112,7 @@ export class RfidController {
     await this.rfidRepository.updateById(id, rfid);
   }
 
-  @del('/rfids/{id}', {
+  @del('/api/rfids/{id}', {
     responses: {
       '204': {
         description: 'Rfid DELETE success',

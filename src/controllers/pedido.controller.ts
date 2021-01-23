@@ -25,7 +25,7 @@ export class PedidoController {
     public pedidoRepository : PedidoRepository,
   ) {}
 
-  @post('/pedidos', {
+  @post('/api/pedidos', {
     responses: {
       '200': {
         description: 'Pedido model instance',
@@ -48,7 +48,7 @@ export class PedidoController {
     return this.pedidoRepository.create(pedido);
   }
 
-  @get('/pedidos/count', {
+  @get('/api/pedidos/count', {
     responses: {
       '200': {
         description: 'Pedido model count',
@@ -62,7 +62,7 @@ export class PedidoController {
     return this.pedidoRepository.count(where);
   }
 
-  @get('/pedidos', {
+  @get('/api/pedidos', {
     responses: {
       '200': {
         description: 'Array of Pedido model instances',
@@ -83,7 +83,7 @@ export class PedidoController {
     return this.pedidoRepository.find(filter);
   }
 
-  @patch('/pedidos', {
+  @patch('/api/pedidos', {
     responses: {
       '200': {
         description: 'Pedido PATCH success count',
@@ -105,7 +105,7 @@ export class PedidoController {
     return this.pedidoRepository.updateAll(pedido, where);
   }
 
-  @get('/pedidos/{id}', {
+  @get('/api/pedidos/{id}', {
     responses: {
       '200': {
         description: 'Pedido model instance',
@@ -124,7 +124,7 @@ export class PedidoController {
     return this.pedidoRepository.findById(id, filter);
   }
 
-  @patch('/pedidos/{id}', {
+  @patch('/api/pedidos/{id}', {
     responses: {
       '204': {
         description: 'Pedido PATCH success',
@@ -145,7 +145,7 @@ export class PedidoController {
     await this.pedidoRepository.updateById(id, pedido);
   }
 
-  @put('/pedidos/{id}', {
+  @put('/api/pedidos/{id}', {
     responses: {
       '204': {
         description: 'Pedido PUT success',
@@ -159,7 +159,7 @@ export class PedidoController {
     await this.pedidoRepository.replaceById(id, pedido);
   }
 
-  @del('/pedidos/{id}', {
+  @del('/api/pedidos/{id}', {
     responses: {
       '204': {
         description: 'Pedido DELETE success',

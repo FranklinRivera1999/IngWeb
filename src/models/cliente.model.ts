@@ -36,6 +36,11 @@ export class Cliente extends Entity {
   })
   nroTarjeta?: string;
 
+  @property({
+    type: 'string',
+  })
+  status?: string;
+
   @belongsTo(() => Rfid)
   rfidId: string;
 

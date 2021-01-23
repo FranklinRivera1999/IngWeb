@@ -25,7 +25,7 @@ export class ClienteController {
     public clienteRepository : ClienteRepository,
   ) {}
 
-  @post('/clientes', {
+  @post('/api/clientes', {
     responses: {
       '200': {
         description: 'Cliente model instance',
@@ -50,7 +50,7 @@ export class ClienteController {
   }
 
 
-  @get('/clientes', {
+  @get('/api/clientes', {
     responses: {
       '200': {
         description: 'Array of Cliente model instances',
@@ -74,7 +74,7 @@ export class ClienteController {
   }
 
 
-  @get('/clientes/{id}', {
+  @get('/api/clientes/{id}', {
     responses: {
       '200': {
         description: 'Cliente model instance',
@@ -93,7 +93,7 @@ export class ClienteController {
     return this.clienteRepository.findById(id, filter);
   }
 
-  @patch('/clientes/{id}', {
+  @patch('/api/clientes/{id}', {
     responses: {
       '204': {
         description: 'Cliente PATCH success',
@@ -114,7 +114,7 @@ export class ClienteController {
     await this.clienteRepository.updateById(id, cliente);
   }
 
-  @del('/clientes/{id}', {
+  @del('/api/clientes/{id}', {
     responses: {
       '204': {
         description: 'Cliente DELETE success',

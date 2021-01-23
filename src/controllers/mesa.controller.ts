@@ -57,7 +57,7 @@ export class MesaController {
           'application/json': {
             schema: {
               type: 'array',
-              items: getModelSchemaRef(Mesa, {includeRelations: true}),
+              items: getModelSchemaRef(Mesa),
             },
           },
         },
@@ -65,9 +65,12 @@ export class MesaController {
     },
   })
   async find(
-    
+    @param.query.string('mozoId') mozoId ?: string,
   ): Promise<Mesa[]> {
     return this.mesaRepository.find({
+      where:{
+        mozoId
+      },
       include:['cliente']
     });
   }
