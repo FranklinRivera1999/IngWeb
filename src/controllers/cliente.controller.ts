@@ -69,7 +69,8 @@ export class ClienteController {
     },
   })
   async find(
-    @param.query.string('query') query ?: string
+    @param.query.string('query') query ?: string,
+    @param.query.boolean('rfid') rfid ?: boolean
   ): Promise<Cliente[]> {
     let findLogic:any = {
       where:{
@@ -84,6 +85,14 @@ export class ClienteController {
           regexp: new RegExp('^.*' + query + '.*$', 'i')
         }
       }]
+    }
+
+    if(rfid){
+      findLogic.where ={
+        rfidId:{
+          neq:null
+        }
+      }
     }
     return this.clienteRepository.find(findLogic);
   }
