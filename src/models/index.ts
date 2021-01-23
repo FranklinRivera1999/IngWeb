@@ -6,3 +6,4 @@ export * from './pedido.model';
 export * from './comprobante.model';
 export * from './cliente.model';
 export * from './rfid.model';
+export * from './producto-comprado.model';

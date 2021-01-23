@@ -1,5 +1,8 @@
 import {Entity, model, property, belongsTo} from '@loopback/repository';
 import {Cliente} from './cliente.model';
+import { ProductoComprado } from './producto-comprado.model';
+
+
 
 @model()
 export class Pedido extends Entity {
@@ -10,10 +13,6 @@ export class Pedido extends Entity {
   })
   id: string;
 
-  @property({
-    type: 'string',
-  })
-  clienteDNI?: string;
 
   @property({
     type: 'date',
@@ -21,11 +20,16 @@ export class Pedido extends Entity {
   })
   created?: string;
 
+  @property({
+    type: 'number',
+  })
+  total?: number;
 
   @property({
-    type: 'array'
+    type: 'array',
+    itemType: ProductoComprado
   })
-  productos?: object[]
+  productos?: ProductoComprado[]
 
   @belongsTo(() => Cliente)
   clienteId: string;

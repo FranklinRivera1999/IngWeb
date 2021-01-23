@@ -5,3 +5,4 @@ export * from './mesa.controller';
 export * from './producto.controller';
 export * from './rfid.controller';
 export * from './cliente.controller';
+export * from './pedido.controller';
