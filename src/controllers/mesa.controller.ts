@@ -65,9 +65,11 @@ export class MesaController {
     },
   })
   async find(
-    @param.filter(Mesa) filter?: Filter<Mesa>,
+    
   ): Promise<Mesa[]> {
-    return this.mesaRepository.find(filter);
+    return this.mesaRepository.find({
+      include:['cliente']
+    });
   }
 
 

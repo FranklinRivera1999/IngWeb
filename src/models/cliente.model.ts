@@ -1,8 +1,9 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Rfid} from './rfid.model';
 
 @model()
 export class Cliente extends Entity {
-  
+
   @property({
     type: 'string',
     id: true,
@@ -35,6 +36,8 @@ export class Cliente extends Entity {
   })
   nroTarjeta?: string;
 
+  @belongsTo(() => Rfid)
+  rfidId: string;
 
   constructor(data?: Partial<Cliente>) {
     super(data);

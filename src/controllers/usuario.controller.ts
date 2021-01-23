@@ -120,28 +120,6 @@ export class UsuarioController {
     return this.usuarioRepository.find(filter);
   }
 
-  @authenticate("jwt")
-  @patch('/api/usuarios', {
-    responses: {
-      '200': {
-        description: 'Usuario PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Usuario, {partial: true}),
-        },
-      },
-    })
-    usuario: Usuario,
-    @param.where(Usuario) where?: Where<Usuario>,
-  ): Promise<Count> {
-    return this.usuarioRepository.updateAll(usuario, where);
-  }
 
   @authenticate("jwt")
   @get('/api/usuarios/{id}', {
@@ -184,22 +162,6 @@ export class UsuarioController {
     usuario: Usuario,
   ): Promise<void> {
     await this.usuarioRepository.updateById(id, usuario);
-  }
-
-
-  @authenticate("jwt")
-  @put('/api/usuarios/{id}', {
-    responses: {
-      '204': {
-        description: 'Usuario PUT success',
-      },
-    },
-  })
-  async replaceById(
-    @param.path.string('id') id: string,
-    @requestBody() usuario: Usuario,
-  ): Promise<void> {
-    await this.usuarioRepository.replaceById(id, usuario);
   }
 
    

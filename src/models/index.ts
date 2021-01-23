@@ -5,3 +5,4 @@ export * from './producto.model';
 export * from './pedido.model';
 export * from './comprobante.model';
 export * from './cliente.model';
+export * from './rfid.model';

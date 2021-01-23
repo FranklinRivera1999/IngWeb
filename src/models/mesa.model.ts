@@ -1,5 +1,6 @@
 import {Entity, model, property, belongsTo} from '@loopback/repository';
 import {Usuario} from './usuario.model';
+import {Cliente} from './cliente.model';
 
 @model()
 export class Mesa extends Entity {
@@ -28,6 +29,9 @@ export class Mesa extends Entity {
 
   @belongsTo(() => Usuario, {name: 'mozo'})
   mozoId: string;
+
+  @belongsTo(() => Cliente,{name:'cliente'})
+  clienteId: string;
 
   constructor(data?: Partial<Mesa>) {
     super(data);
