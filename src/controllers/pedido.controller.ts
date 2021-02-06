@@ -22,7 +22,7 @@ import {PedidoRepository} from '../repositories';
 export class PedidoController {
   constructor(
     @repository(PedidoRepository)
-    public pedidoRepository : PedidoRepository,
+    public pedidoRepository: PedidoRepository,
   ) {}
 
   @post('/api/pedidos', {
@@ -56,9 +56,7 @@ export class PedidoController {
       },
     },
   })
-  async count(
-    @param.where(Pedido) where?: Where<Pedido>,
-  ): Promise<Count> {
+  async count(@param.where(Pedido) where?: Where<Pedido>): Promise<Count> {
     return this.pedidoRepository.count(where);
   }
 
@@ -78,9 +76,13 @@ export class PedidoController {
     },
   })
   async find(
-    @param.filter(Pedido) filter?: Filter<Pedido>,
+    @param.query.string('mesaId') mesaId ?: string,
   ): Promise<Pedido[]> {
-    return this.pedidoRepository.find(filter);
+    return this.pedidoRepository.find({
+      where:{
+        mesaId
+      }
+    });
   }
 
   @patch('/api/pedidos', {
@@ -119,7 +121,8 @@ export class PedidoController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Pedido, {exclude: 'where'}) filter?: FilterExcludingWhere<Pedido>
+    @param.filter(Pedido, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Pedido>,
   ): Promise<Pedido> {
     return this.pedidoRepository.findById(id, filter);
   }
