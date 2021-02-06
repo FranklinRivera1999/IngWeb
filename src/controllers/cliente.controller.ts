@@ -1,10 +1,6 @@
 import {
-  Count,
-  CountSchema,
-  Filter,
   FilterExcludingWhere,
   repository,
-  Where,
 } from '@loopback/repository';
 import {
   post,
@@ -195,6 +191,41 @@ export class ClienteController {
 
     await this.mesaRepository.updateById(mesaId,{
       clienteId
+    })
+  }
+
+  @patch('/api/clientes/assignRFID', {
+    responses: {
+      '204': {
+        description: 'Cliente assign RFID',
+      },
+    },
+  })
+  async assignRFID(
+    @param.query.string('clienteId',{required:true}) clienteId: string,
+    @param.query.string('rfid',{required:true}) rfid: string
+  ): Promise<void> {
+    let client = await this.clienteRepository.findById(clienteId)
+    if(! client) throw new HttpErrors[400]('Client Outside')
+    await this.clienteRepository.updateById(clienteId,{
+      rfidId:rfid
+    })
+  }
+
+  @patch('/api/clientes/unassignRFID', {
+    responses: {
+      '204': {
+        description: 'Cliente assign RFID',
+      },
+    },
+  })
+  async unassignRFID(
+    @param.query.string('clienteId',{required:true}) clienteId: string,
+  ): Promise<void> {
+    let client = await this.clienteRepository.findById(clienteId)
+    if(! client) throw new HttpErrors[400]('Client Outside')
+    await this.clienteRepository.updateById(clienteId,{
+      rfidId:undefined
     })
   }
 
