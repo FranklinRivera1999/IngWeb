@@ -66,11 +66,12 @@ export class ClienteController {
   })
   async find(
     @param.query.string('query') query ?: string,
-    @param.query.boolean('rfid') rfid ?: boolean
+    @param.query.boolean('rfid') rfid ?: boolean,
+    @param.query.string('status') status ?: string,
   ): Promise<Cliente[]> {
     let findLogic:any = {
       where:{
-
+        status
       },
       include:['rfid']
     }
@@ -162,7 +163,8 @@ export class ClienteController {
 
     await this.mesaRepository.updateAll(
       {
-        clienteId: undefined
+        clienteId: undefined,
+        status:'not-available'
       },{
         clienteId: id
       }
@@ -190,11 +192,12 @@ export class ClienteController {
     })
 
     await this.mesaRepository.updateById(mesaId,{
-      clienteId
+      clienteId,
+      status:'available'
     })
   }
 
-  @patch('/api/clientes/assignRFID', {
+  @patch('/api/clientes/assignRFID/{id}', {
     responses: {
       '204': {
         description: 'Cliente assign RFID',
@@ -202,32 +205,15 @@ export class ClienteController {
     },
   })
   async assignRFID(
-    @param.query.string('clienteId',{required:true}) clienteId: string,
-    @param.query.string('rfid',{required:true}) rfid: string
+    @param.path.string('id') id: string,
   ): Promise<void> {
-    let client = await this.clienteRepository.findById(clienteId)
-    if(! client) throw new HttpErrors[400]('Client Outside')
-    await this.clienteRepository.updateById(clienteId,{
-      rfidId:rfid
+    let client = await this.clienteRepository.findById(id)
+    if(! client) throw new HttpErrors[404]('Client not fount')
+    await this.clienteRepository.updateById(id,{
+      status:'eating'
     })
   }
 
-  @patch('/api/clientes/unassignRFID', {
-    responses: {
-      '204': {
-        description: 'Cliente assign RFID',
-      },
-    },
-  })
-  async unassignRFID(
-    @param.query.string('clienteId',{required:true}) clienteId: string,
-  ): Promise<void> {
-    let client = await this.clienteRepository.findById(clienteId)
-    if(! client) throw new HttpErrors[400]('Client Outside')
-    await this.clienteRepository.updateById(clienteId,{
-      rfidId:undefined
-    })
-  }
 
   @del('/api/clientes/{id}', {
     responses: {

@@ -23,6 +23,11 @@ export class Mesa extends Entity {
   especificacion?: string;
 
   @property({
+    status: 'string',
+  })
+  status?: string;
+
+  @property({
     type: 'number',
   })
   canComensales?: number;
